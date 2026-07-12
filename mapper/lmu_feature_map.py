@@ -1,6 +1,6 @@
 from domain.telemetry_feature import TelemetryFeature
 
-LMU_CHANNEL_MAP = {
+LMU_FEATURE_MAP = {
     "GPS Time": TelemetryFeature.SESSION_TIME,
     "Lap": TelemetryFeature.LAP,
     "Lap Time": TelemetryFeature.LAP_TIME,
