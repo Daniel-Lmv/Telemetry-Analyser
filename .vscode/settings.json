@@ -1,0 +1,38 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "DuckDB",
+            "database": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Telemetry\\Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z.duckdb",
+            "name": "ads"
+        }
+    ],
+    "workbench.editorAssociations": {
+        "*.parquet": "duckdb.dataFileViewer",
+        "*.csv": "duckdb.dataFileViewer",
+        "*.tsv": "duckdb.dataFileViewer",
+        "*.xlsx": "duckdb.dataFileViewer"
+    },
+    "duckdb.databases": [
+        {
+            "alias": "Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z",
+            "type": "file",
+            "path": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Telemetry\\Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z.duckdb",
+            "readOnly": true,
+            "attached": true
+        }
+    ],
+    "duckdb.defaultDatabase": "Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z",
+    "a-file-icon-vscode.activeIconPacks": [
+        "rails",
+        "angular",
+        "react",
+        "phalcon"
+    ],
+    "a-file-icon-vscode.arrowTheme": "material",
+    "a-file-icon-vscode.folderColor": "#90a4ae",
+    "a-file-icon-vscode.folderTheme": "specific",
+    "a-file-icon-vscode.opacity": 1,
+    "a-file-icon-vscode.saturation": 1
+}
