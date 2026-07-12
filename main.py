@@ -1,11 +1,17 @@
-import duckdb
+from pathlib import Path
 
-# Caminho para o arquivo gerado pelo LMU
-con = duckdb.connect(
-    r"C:\Program Files (x86)\Steam\steamapps\common\Le Mans Ultimate\UserData\Telemetry\Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z.duckdb",
-    read_only=True,
+from mapper.lmu_mapper import LMUMapper
+from reader.lmu_reader import LMUReader
+
+path = Path(
+    "C:/Program Files (x86)/Steam/steamapps/common/Le Mans Ultimate/UserData/Telemetry/Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z.duckdb"
 )
 
-# Lista todas as tabelas
-tables = con.execute("SHOW TABLES").fetchall()
-print(tables, "\n")
+reader = LMUReader(path)
+session = reader.load()
+
+mapper = LMUMapper()
+mapped = mapper.map(session)
+
+print(mapped.metadata)
+print("\n", mapped.signals)
