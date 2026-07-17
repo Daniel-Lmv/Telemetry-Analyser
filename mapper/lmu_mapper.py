@@ -7,10 +7,9 @@ from domain.session import ChannelInfo, Session
 from domain.signal import Signal
 from domain.telemetry_feature import TelemetryFeature
 from mapper.lmu_feature_map import LMU_FEATURE_MAP
-from mapper.telemetry_mapper import TelemetryMapper
 
 
-class LMUMapper(TelemetryMapper):
+class LMUMapper:
     def map(self, session: Session) -> MappedSession:
         metadata = self._map_metadata(session.metadata)
         signals = self._map_signals(session.channel_info, session.channel_data)
