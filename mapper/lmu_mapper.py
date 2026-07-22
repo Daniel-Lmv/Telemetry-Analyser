@@ -1,12 +1,20 @@
 from typing import Any
 
-from pandas import DataFrame
+import numpy as np
+from pandas import DataFrame, Index
 
 from domain.mapped_session import MappedSession
 from domain.session import ChannelInfo, Session
 from domain.signal import Signal
 from domain.telemetry_feature import TelemetryFeature
 from mapper.lmu_feature_map import LMU_FEATURE_MAP
+
+LMU_WHEEL_COLUMNS = {
+    "value1": "FL",
+    "value2": "FR",
+    "value3": "RL",
+    "value4": "RR",
+}
 
 
 class LMUMapper:
@@ -31,10 +39,13 @@ class LMUMapper:
             if feature is None:
                 continue
 
+            data = self._normalize_dataframe(channel_data[channel_name])
+            data = self._index_dataframe(data, info.frequency)
+
             signals[feature] = self._create_signal(
                 feature=feature,
                 channel_info=info,
-                data=channel_data[channel_name],
+                data=data,
             )
         return signals
 
@@ -47,3 +58,21 @@ class LMUMapper:
             unit=channel_info.unit,
             data=data,
         )
+
+    def _normalize_dataframe(self, data: DataFrame) -> DataFrame:
+        df = data.copy()
+
+        if all(column in df.columns for column in LMU_WHEEL_COLUMNS):
+            df = df.rename(columns=LMU_WHEEL_COLUMNS)
+
+        return df
+
+    def _index_dataframe(self, data: DataFrame, frequency: int) -> DataFrame:
+        df = data.copy()
+
+        sample_period = 1 / frequency
+        n_samples = len(df.index)
+
+        time_index = Index(np.arange(n_samples) * sample_period, name="time")
+        df.index = time_index
+        return df

@@ -20,7 +20,13 @@
             "type": "file",
             "path": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Telemetry\\Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z.duckdb",
             "readOnly": true,
-            "attached": true
+            "attached": false
+        },
+        {
+            "alias": "Autódromo José Carlos Pace_R_2026-07-21T22_03_12Z",
+            "type": "file",
+            "path": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Telemetry\\Autódromo José Carlos Pace_R_2026-07-21T22_03_12Z.duckdb",
+            "attached": false
         }
     ],
     "duckdb.defaultDatabase": "Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z",
