@@ -18,7 +18,7 @@ LMU_FEATURE_MAP = {
     "Fuel Level": TelemetryFeature.FUEL,
     "Tyres Wear": TelemetryFeature.TYRE_WEAR,
     "TyresPressure": TelemetryFeature.TYRE_PRESSURE,
-    "Tyres Temperature": TelemetryFeature.TYRE_TEMPERATURE,
+    "TyresTempCentre": TelemetryFeature.TYRE_TEMPERATURE,
     "TyresCompound": TelemetryFeature.TYRE_COMPOUND,
     "Brakes Temp": TelemetryFeature.BRAKE_TEMPERATURE,
     "Track Temperature": TelemetryFeature.TRACK_TEMPERATURE,

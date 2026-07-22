@@ -1,17 +1,30 @@
 from pathlib import Path
 
+import pandas as pd
+
 from mapper.lmu_mapper import LMUMapper
+from pipeline.telemetry_pipeline import TelemetryPipeline
 from reader.lmu_reader import LMUReader
+from transform.synchronizer import Synchronizer
+from transform.telemetry_builder import TelemetryBuilder
 
 path = Path(
-    "C:/Program Files (x86)/Steam/steamapps/common/Le Mans Ultimate/UserData/Telemetry/Autodromo Nazionale Monza_P_2026-07-07T23_43_42Z.duckdb"
+    r"C:\Program Files (x86)\Steam\steamapps\common\Le Mans Ultimate\UserData\Telemetry\Sebring International Raceway_R_2026-07-19T20_28_44Z.duckdb"
 )
 
-reader = LMUReader(path)
+pd.set_option("display.max_rows", None)
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", None)
+pd.set_option("display.max_colwidth", None)
+
+reader = LMUReader(Path(path))
 session = reader.load()
 
-mapper = LMUMapper()
-mapped = mapper.map(session)
+pipeline = TelemetryPipeline(
+    mapper=LMUMapper(),
+    synchronizer=Synchronizer(),
+    builder=TelemetryBuilder(),
+)
 
-print(mapped.metadata)
-print("\n", mapped.signals)
+telemetry = pipeline.run(session)
+telemetry.data.to_csv("head.csv", index=True)
